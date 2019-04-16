@@ -26,7 +26,7 @@ def index(request):
 
 @api_view(['POST'])
 def get_search(request):
-	print(' request .. ', request.POST)
+	#print(' request .. ', request.POST)
 	restrictive = True
 	check_keywords_in_description = True
 	check_keywords_in_bio = True
@@ -60,7 +60,7 @@ def get_search(request):
 
 
 def process_search_request(request_obj):
-	print('REQUEST OBJJJ ... ', request_obj)
+	#print('REQUEST OBJJJ ... ', request_obj)
 	companies = request_obj['companies'].replace('"','')
 	titles = request_obj['titles'].replace('"','')
 	keywords = request_obj['keywords'].replace('"','')	
@@ -77,8 +77,7 @@ def process_search_request(request_obj):
 			return make_non_restrictive_request(companies, titles, keywords, locations, request_obj)
 	
 
-def make_default_request():
-	print('in deafult')
+def make_default_request():	
 	s = Search(index=settings.ELASTIC_INDEX).using(client).query()
 	print(s.to_dict())	
 	return execute_es_request(s)
@@ -236,6 +235,9 @@ def execute_es_request(es_request):
 	
 	experts_list = []
 	for hit in res['hits']['hits']:
+		# print(" --------- -------- --------- -------- ---------")
+		# print("HIT ......... ", hit['source']['fullname'] +  ' .... ' + hit['_id'])
+		# print(" --------- -------- --------- -------- ---------")
 		matches = []
 		if 'inner_hits' in hit:
 			for match in hit['inner_hits']['positions']['hits']['hits']:			
@@ -246,7 +248,7 @@ def execute_es_request(es_request):
 					'companyname': '. '.join(match['highlight']['companyname'] if 'companyname' in match['highlight'] else 'N/A'),
 					'description': '. '.join(match['highlight']['description']) if 'description' in match['highlight'] else 'No matching description'},
 					)
-				experts_list.append({ 'source': hit['source'], 'matches': matches })
+		experts_list.append({ 'source': hit['source'], 'matches': matches })
 	return {'count': search_result.hits.total, 'experts': experts_list}	
 		
 
