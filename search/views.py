@@ -98,11 +98,13 @@ def make_non_restrictive_request(companies, titles, keywords, locations, request
 	# if (request_obj['check_keywords_in_description'] == True):
 	# 	if (get_description_query_string(keywords) != None):
 	# 		must_list.append(get_description_query_string(keywords))
-	if (get_locations_query_string(locations) != None):
-		must_list.append(get_locations_query_string(locations))
+	
 	# if (request_obj['check_keywords_in_bio'] == True):
 	# 	if (get_bio_query_string(keywords) != None):
 	# 		must_list.append(get_bio_query_string(keywords))
+
+	# if (get_locations_query_string(locations) != None):
+	# 	must_list.append(get_locations_query_string(locations))
 
 	if (request_obj['check_keywords_in_description'] == True) and (request_obj['check_keywords_in_bio'] == True):
 		if (get_description_bio_query_string(keywords) != None):
