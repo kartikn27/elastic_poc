@@ -63,8 +63,9 @@ def process_search_request(request_obj):
 	print('REQUEST OBJJJ ... ', request_obj)
 	companies = request_obj['companies'].replace('"','')
 	titles = request_obj['titles'].replace('"','')
-	keywords = request_obj['keywords'].replace('"','')
-	locations = request_obj['locations'].replace('"','')
+	keywords = request_obj['keywords'].replace('"','')	
+	#locations = request_obj['locations'].replace('"','')
+	locations = 'locations'
 
 	if companies == '' and titles == '' and keywords == '':
 		return make_default_request();
