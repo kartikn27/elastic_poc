@@ -25,7 +25,7 @@ SECRET_KEY = 'er3ii1n4rc*q^ssna(*epje-u!e$an!4@%#p(*$1m*1!__9aby'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 ELASTIC_HOST = 'http://35.245.231.131:9200/'
 ELASTIC_INDEX = 'nx_data_4162019'
