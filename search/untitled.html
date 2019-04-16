@@ -1,0 +1,62 @@
+{
+  "query": {
+    "nested": {
+      "path": "positions",
+      "query": {
+        "bool": {
+          "must": [
+            {
+              "query_string": {
+                "default_field": "positions.companyname",
+                "query": "IBM OR microsoft OR gartner"
+              }
+            },
+            {
+              "query_string": {
+                "default_field": "positions.title",
+                "query": "developer"
+              }
+            },
+            {
+              "query_string": {
+                "default_field": "positions.description",
+                "query": "testing"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "highlight": {
+    "fields": {
+      "positions.title": {
+        "pre_tags": [
+          "<strong>"
+        ],
+        "post_tags": [
+          "</strong>"
+        ],
+        "fragment_size": 1000
+      },
+      "positions.companies": {
+        "pre_tags": [
+          "<strong>"
+        ],
+        "post_tags": [
+          "</strong>"
+        ],
+        "fragment_size": 1000
+      },
+      "positions.description": {
+        "pre_tags": [
+          "<strong>"
+        ],
+        "post_tags": [
+          "</strong>"
+        ],
+        "fragment_size": 1000
+      }
+    }
+  }
+}

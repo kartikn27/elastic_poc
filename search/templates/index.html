@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+<title>Search POC</title>
+
+{% block content %}
+  <form action="{% url 'get_search' %}" method="post" novalidate>
+    {% csrf_token %}    
+
+    <div class="highlight" style="background-color: #e7e7ef; padding: 10px 10px 10px 10px; margin-bottom: 20px;">
+		<div class="form-group">
+		    <label for="titlesInput"><strong>Job Titles</strong> </label>
+		    <textarea class="form-control" id="titlesInput" rows="3" name="titlesInput"></textarea>
+		    <div class="form-check">
+	    		<input type="checkbox" class="form-check-input" id="inCompanyCheck" checked disabled>
+	    		<label class="form-check-label" for="inCompanyCheck">In Company</label>
+	  		</div>
+	  		<div class="form-group" style="width: 150px;">
+	    		<label for="exampleFormControlSelect1">More recent than</label>
+	    			<select class="form-control" id="exampleFormControlSelect1" name="yearRecency">
+						<option></option>
+				      	<option>2019</option>
+				      	<option>2018</option>
+				      	<option>2017</option>
+				      	<option>2016</option>
+				      	<option>2015</option>
+				      	<option>2014</option>
+				      	<option>2013</option>
+				      	<option>2012</option>
+				    </select>
+			</div>
+		</div>
+	</div>
+
+
+  	<div class="highlight" style="background-color: #e7e7ef; padding: 10px 10px 10px 10px; margin-bottom: 20px;">
+	  	<div class="form-group">
+		    <label for="titlesInput"><strong>Companies</strong></label>
+		    <textarea class="form-control" id="companiesInput" rows="3" name="companiesInput"></textarea>
+	  	</div>
+
+	  	<div class="form-group">		    		    
+		    <div class="form-check">
+	    		<input type="checkbox" class="form-check-input" id="notCurrentC" name="notCurrentPosition" value="1">
+	    		<label class="form-check-label" for="notCurrentC">Not Current</label>
+	  		</div>
+	  		<div class="form-check" style="display: none">
+	    		<input type="checkbox" class="form-check-input" id="bioCheckC">
+	    		<label class="form-check-label" for="bioCheckC">In Bio</label>
+	  		</div>
+	  	</div>
+  	</div>
+
+  	<div class="highlight" style="background-color: #e7e7ef; padding: 10px 10px 10px 10px; margin-bottom: 20px;">
+	  	<div class="form-group">
+		    <label for="keywordsInput"><strong>Keywords</strong></label>
+		    <textarea class="form-control" id="keywordsInput" rows="3" name="keywordsInput"></textarea>
+		    <div class="form-check">
+	    		<input type="checkbox" class="form-check-input" id="descCheckK" name="descCheckK" checked>
+	    		<label class="form-check-label" for="descCheckK">In Description</label>
+	  		</div>
+	  		<div class="form-check">
+	    		<input type="checkbox" class="form-check-input" id="bioCheckK" name="bioCheckK">
+	    		<label class="form-check-label" for="descCheckK">In Short Bio</label>
+	  		</div>
+	  	</div>
+  	</div>
+  	
+
+  	<div class="form-group">
+	    <label for="keywordsInput">Location</label>
+	    <input class="form-control" type="text" placeholder="Add Location" name="locationsInput" disabled>
+  	</div>
+
+  	<div class="form-check">
+  		<input class="form-check-input" type="radio" id="restrictive-id" name="restrictive" value='1' checked>
+  		<label class="form-check-label" for="restrictive-id">
+    		Restrictive
+  		</label>
+	</div>
+	<div class="form-check">
+	  	<input class="form-check-input" type="radio" id="nonRestrictive-id" name="restrictive" value='0'>
+	  	<label class="form-check-label" for="nonRestrictive-id">
+	    	Non-Restrictive
+	  	</label>
+	</div>	
+
+    <button type="submit" class="btn btn-success">Search</button>
+  </form>
+{% endblock %}

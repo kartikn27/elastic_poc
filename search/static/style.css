@@ -1,0 +1,26 @@
+.copyright{
+	text-align: center;
+	font-size: 18px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.container {
+max-width: 1400px !important;
+}
+
+.matches {
+	margin-bottom: 10px;
+}
+
+.expert-name {
+	color: #FFFFFF !important;
+	font-size: 18px;
+}
+
+.expert-card {
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+ 

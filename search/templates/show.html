@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <p class="font-weight-bold">Found {{count}} experts</p> 
+
+  <div class="row">    
+    {% if experts %}    
+      {% for expert in experts %}      
+        <div class="expert-card col-sm-6">
+          <div class="card border-success mb-33">
+            <div class="card-header text-white bg-dark mb-3"><a class="expert-name" href="{{expert.source.url_unique_profile}}">{{ expert.source.fullname }}</a></div>
+            <div class="card-body text-secondary">
+              <p>Found {{ expert.matches | length }} matching positions </p>
+              {% for match in expert.matches %}
+                <div class="matches">
+                  <div id="accordion">
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                          <span class="btn btn-link" data-toggle="collapse" data-target="{{ '#' |add:match.id_random }}" aria-expanded="true" aria-controls="collapseOne">
+                            {{ match.title | safe }} at {{ match.companyname | safe}} 
+                          </span>
+                        </h5>
+                      </div>
+                      <div id="{{ match.id_random }}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion" style="font-size: 15px;">
+                        <div class="card-body">
+                        {{ match.description | safe }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+                  
+            {% for position in expert.source.positions %}
+              {% if position.position_type == 'Current' %}
+                <p>{{ position.title }} at {{ position.companyname }}  <span style="color: #000;">({{ position.startdateyear }} - {{ position.enddateyear}})</span></p>
+              {% endif %}
+              {% if position.position_type == 'Past' %}                      
+                <p>{{ position.title}} at {{ position.companyname }} <span style="color: #000;">({{ position.startdateyear }} - {{ position.enddateyear}})</span></p>
+              {% endif %}
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  
+{% endblock %}
