@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 ELASTIC_HOST = 'http://35.245.231.131:9200/'
-ELASTIC_INDEX = 'nx_data_4162019'
+ELASTIC_INDEX = 'nx_data_4172019'
 ELASTIC_INDEX_TYPE = 'expert'
 SEARCH_KEY = 'match'
 MATCHALL_KEY = 'term'
