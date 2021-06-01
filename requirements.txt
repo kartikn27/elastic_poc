@@ -21,6 +21,6 @@ simplejson==3.16.0
 six==1.12.0
 text-unidecode==1.2
 uritemplate==3.0.0
-urllib3==1.24.1
+urllib3==1.26.5
 django-crispy-forms
 elasticsearch_dsl
